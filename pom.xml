@@ -26,9 +26,26 @@
           <version>5.8.2</version>
           <scope>test</scope>
         </dependency>
+      <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
+
     </dependencies>
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M5</version>
+                <configuration combine.self="append">
+                    <testClassesDirectory>${build.testOutputDirectory}</testClassesDirectory>
+                    <argLine>--patch-module edu.wsu=${build.testOutputDirectory}
+                        --add-opens edu.wsu/edu.wsu=ALL-UNNAMED
+                        --add-modules edu.wsu
+                        --add-opens edu.wsu/edu.wsu.model=ALL-UNNAMED</argLine>
+                    <additionalClasspathElements>
+                        <additionalClasspathElement>${build.testOutputDirectory}</additionalClasspathElement>
+                    </additionalClasspathElements>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -52,20 +69,7 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.22.1</version>
-                <!-- https://info.michael-simons.eu/2021/10/19/testing-in-a-modular-world/ -->
-                <configuration combine.self="append">
-                    <argLine>--add-opens edu.wsu/edu.wsu=ALL-UNNAMED</argLine>
-                    <argLine>--add-modules edu.wsu</argLine>
-                    <argLine>--add-opens edu.wsu/edu.wsu.model=ALL-UNNAMED</argLine>
-                </configuration>
-            </plugin>
-            <plugin>
-                <artifactId>maven-failsafe-plugin</artifactId>
-                <version>2.22.2</version>
-            </plugin>
+
         </plugins>
     </build>
 </project>
