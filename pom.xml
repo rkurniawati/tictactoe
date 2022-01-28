@@ -37,7 +37,7 @@
                 <version>3.0.0-M5</version>
                 <configuration combine.self="append">
                     <testClassesDirectory>${build.testOutputDirectory}</testClassesDirectory>
-                    <argLine>--patch-module edu.wsu=${build.testOutputDirectory}
+                    <argLine>
                         --add-opens edu.wsu/edu.wsu=ALL-UNNAMED
                         --add-modules edu.wsu
                         --add-opens edu.wsu/edu.wsu.model=ALL-UNNAMED</argLine>
