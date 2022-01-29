@@ -68,12 +68,12 @@ class TicTacToeGameTest {
 
   @Test
   void gameWon1() {
-    // bertie always put his pieces in column 0
-    // ruth always put her pieces in column 1
     game.setPlayer1Name("Bertie");
     game.setPlayer2Name("Ruth");
     game.startGame();
 
+    // bertie always puts his pieces in column 0
+    // ruth always puts her pieces in column 1
     int bertieRow = 0, ruthRow = 0;
     for(int i = 0; i < 5; i++) {
       if (i %2 == 0) {
@@ -85,10 +85,39 @@ class TicTacToeGameTest {
       }
     }
 
-    // verify that the game is won by bertie
+    // verify that the game is won by bertie after 5 moves
     assertEquals(TicTacToeGame.GameState.COMPLETED, game.getState());
     assertEquals("Bertie", game.winnerName());
-
-
   }
+
+  @Test
+  void gameWon2() {
+    // bertie puts his first 2 pices in column 0
+    // ruth puts her first 2 pieces in column 1
+    game.setPlayer1Name("Bertie");
+    game.setPlayer2Name("Ruth");
+    game.startGame();
+
+    int bertieRow = 0, ruthRow = 0;
+    for(int i = 0; i < 4; i++) {
+      if (i %2 == 0) {
+        // bertie
+        game.setValue(bertieRow++, 0);
+      } else {
+        // ruth
+        game.setValue(ruthRow++, 1);
+      }
+    }
+
+    // bertie puts his 3rd piece in row 0, column 2
+    game.setValue(0, 2);
+
+    // ruth puts her 3rd piece in row 2, column 1
+    game.setValue(2, 1);
+
+    // verify that the game is won by ruth
+    assertEquals(TicTacToeGame.GameState.COMPLETED, game.getState());
+    assertEquals("Ruth", game.winnerName());
+  }
+
 }
