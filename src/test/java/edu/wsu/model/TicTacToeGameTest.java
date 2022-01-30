@@ -4,6 +4,8 @@ import static edu.wsu.model.TicTacToeGame.PLAYER_O;
 import static edu.wsu.model.TicTacToeGame.PLAYER_X;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.List;
+import javafx.util.Pair;
 import org.junit.jupiter.api.Test;
 
 class TicTacToeGameTest {
@@ -119,5 +121,44 @@ class TicTacToeGameTest {
     assertEquals(TicTacToeGame.GameState.COMPLETED, game.getState());
     assertEquals("Ruth", game.winnerName());
   }
+
+  @Test
+  void gameWon3() {
+    // bertie puts his first 2 pieces in the diagonal (0,0), (1, 1), (2, 2)
+    // ruth puts her first 2 pieces in diagonal (0, 2), (2, 0)
+
+    game.setPlayer1Name("Bertie");
+    game.setPlayer2Name("Ruth");
+    game.startGame();
+
+    List<Pair<Integer, Integer>> bertieMoves = List.of(
+        new Pair<>(0, 0),
+        new Pair<>(2, 2),
+        new Pair<>(1, 1)
+    );
+
+    List<Pair<Integer, Integer>> ruthMoves = List.of(
+        new Pair<>(0, 2),
+        new Pair<>(2, 0)
+    );
+
+    ;
+    for(int bertie = 0, ruth = 0, i = 0; bertie < bertieMoves.size() || ruth < ruthMoves.size(); i++) {
+      Pair<Integer, Integer> currentMove;
+      if (i %2 == 0) {
+        // bertie
+        currentMove = bertieMoves.get(bertie++);
+      } else {
+        // ruth
+        currentMove = ruthMoves.get(ruth++);
+      }
+      game.setValue(currentMove.getKey(), currentMove.getValue());
+    }
+
+    // verify that the game is won by bertie
+    assertEquals(TicTacToeGame.GameState.COMPLETED, game.getState());
+    assertEquals("Bertie", game.winnerName());
+  }
+
 
 }
