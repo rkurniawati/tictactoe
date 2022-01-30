@@ -1,5 +1,6 @@
-package edu.wsu;
+package edu.wsu.controller;
 
+import edu.wsu.App;
 import java.io.IOException;
 import javafx.fxml.FXML;
 
