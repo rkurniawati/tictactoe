@@ -6,6 +6,7 @@ import edu.wsu.model.TicTacToeImplementation;
 import java.io.IOException;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -37,6 +38,19 @@ public class TicTacToeJavaFXView extends StackPane implements Observer  {
     imageO = new Image(getClass().getResource("/edu/wsu/o.png").toString());
 
     this.getStylesheets().add(getClass().getResource("/edu/wsu/board-style.css").toString());
+
+    GridPane gridPane = this.getBoard();
+    gridPane.getStyleClass().add("grid");
+    for(int r = 0; r < TicTacToeGame.BOARD_SIZE; r++) {
+      for (int c = 0; c < TicTacToeGame.BOARD_SIZE; c++) {
+        Label label = new Label();
+        //label.setGraphic(new ImageView(blank));
+        label.setMinSize(100, 100);
+        label.getStyleClass().add("cell");
+        label.setContentDisplay(ContentDisplay.CENTER);
+        gridPane.add(label, c, r);
+      }
+    }
 
     initializeBoard();
   }

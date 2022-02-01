@@ -13,13 +13,18 @@ class TicTacToeGameTest {
 
   private TicTacToeGame game;
 
+  TicTacToeGame createGame() {
+    return new TicTacToeImplementation();
+  }
+
   @org.junit.jupiter.api.BeforeEach
   void setUp() {
-    game = new TicTacToeImplementation();
+
+    game = createGame();
   }
 
   @Test
-  void createGame() {
+  void createGameTest() {
     // right after creation the game is not started
     assertEquals(TicTacToeGame.GameState.NOT_STARTED, game.getState());
   }
