@@ -16,6 +16,19 @@
             <version>17.0.1</version>
         </dependency>
         <dependency>
+            <groupId>org.testfx</groupId>
+            <artifactId>testfx-core</artifactId>
+            <version>4.0.16-alpha</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.testfx/testfx-junit5 -->
+        <dependency>
+            <groupId>org.testfx</groupId>
+            <artifactId>testfx-junit5</artifactId>
+            <version>4.0.16-alpha</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
             <version>17.0.1</version>
@@ -48,7 +61,9 @@
                     <argLine>
                         --add-opens edu.wsu/edu.wsu=ALL-UNNAMED
                         --add-modules edu.wsu
-                        --add-opens edu.wsu/edu.wsu.model=ALL-UNNAMED</argLine>
+                        --add-opens edu.wsu/edu.wsu.model=ALL-UNNAMED
+                        --add-exports javafx.graphics/com.sun.javafx.application=ALL-UNNAMED
+                    </argLine>
                     <additionalClasspathElements>
                         <additionalClasspathElement>${build.testOutputDirectory}</additionalClasspathElement>
                     </additionalClasspathElements>
