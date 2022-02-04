@@ -42,6 +42,7 @@ public class TicTacToeViewTest {
    */
   @Test
   void should_contain_button_with_text(FxRobot robot) {
+    System.out.println("Check button");
     FxAssert.verifyThat(button, LabeledMatchers.hasText("click me!"));
     // or (lookup by css id):
     FxAssert.verifyThat("#myButton", LabeledMatchers.hasText("click me!"));
@@ -54,6 +55,7 @@ public class TicTacToeViewTest {
    */
   @Test
   void when_button_is_clicked_text_changes(FxRobot robot) {
+    System.out.println("Check click***");
     // when:
     robot.clickOn(".button");
 
