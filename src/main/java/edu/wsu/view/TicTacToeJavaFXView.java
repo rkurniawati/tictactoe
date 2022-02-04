@@ -4,6 +4,7 @@ import edu.wsu.App;
 import edu.wsu.model.TicTacToeGame;
 import edu.wsu.model.TicTacToeImplementation;
 import java.io.IOException;
+import java.util.Objects;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.ContentDisplay;
@@ -24,18 +25,21 @@ import static edu.wsu.model.TicTacToeGame.PLAYER_X;
 import static edu.wsu.model.TicTacToeImplementation.*;
 
 public class TicTacToeJavaFXView extends StackPane implements Observer  {
+
+  public static final String EDU_WSU_X_PNG = "/edu/wsu/x.png";
+  public static final String EDU_WSU_O_PNG = "/edu/wsu/o.png";
   private final BorderPane ticTacToeBoard;
   private final Label[][] boardLabels;
   private final static Logger logger = LogManager.getLogger(App.class);
   private final Image imageX, imageO;
 
-  public TicTacToeJavaFXView() throws IOException {
+  public TicTacToeJavaFXView() throws Exception {
 
     this.ticTacToeBoard = (BorderPane) Util.loadFXML("TicTacToeBoard");
     this.getChildren().add(this.ticTacToeBoard);
     this.boardLabels = new Label[BOARD_SIZE][BOARD_SIZE];
-    imageX = new Image(getClass().getResource("/edu/wsu/x.png").toString());
-    imageO = new Image(getClass().getResource("/edu/wsu/o.png").toString());
+    imageX = new Image(Objects.requireNonNull(getClass().getResource(EDU_WSU_X_PNG)).toString());
+    imageO = new Image(Objects.requireNonNull(getClass().getResource(EDU_WSU_O_PNG)).toString());
 
     this.getStylesheets().add(getClass().getResource("/edu/wsu/board-style.css").toString());
 
@@ -49,6 +53,10 @@ public class TicTacToeJavaFXView extends StackPane implements Observer  {
         label.getStyleClass().add("cell");
         label.setContentDisplay(ContentDisplay.CENTER);
         gridPane.add(label, c, r);
+
+        // label each cell with cellrc, eg cell00, cell01
+        String id = "cell"+r+c;
+        label.setId(id);
       }
     }
 

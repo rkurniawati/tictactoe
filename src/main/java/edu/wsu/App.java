@@ -26,13 +26,12 @@ import javafx.util.Pair;
  */
 public class App extends Application {
 
-    private static Scene scene;
     private int idx = 0;
 
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) throws Exception {
         TicTacToeJavaFXView ticTacToeView = new TicTacToeJavaFXView();
-        scene = new Scene(ticTacToeView);
+        Scene scene = new Scene(ticTacToeView);
 
         TicTacToeGame model = new TicTacToeImplementation();
         model.setPlayer1Name("Bertie");
@@ -60,8 +59,8 @@ public class App extends Application {
             }
 
         }));
-        timeline.setCycleCount(Animation.INDEFINITE);
-        timeline.play();
+        //timeline.setCycleCount(Animation.INDEFINITE);
+        //timeline.play();
     }
 
     private void delay(int numSeconds)  {

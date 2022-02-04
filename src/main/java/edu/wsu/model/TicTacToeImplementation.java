@@ -81,7 +81,7 @@ public class TicTacToeImplementation extends TicTacToeGame {
             return;
         }
         if (board[row][col] != 0) {
-            return;
+            throw new IllegalArgumentException("Row " + row + " and col " + col + " already has a piece");
         }
         board[row][col] = currentPlayer;
         emptySpots--;
