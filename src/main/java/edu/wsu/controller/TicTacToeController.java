@@ -17,9 +17,6 @@ public class TicTacToeController {
     @FXML
     public BorderPane borderPane;
 
-    public void initialize() {
-    }
-
     public static class CellClickHandler implements
         EventHandler<MouseEvent> {
         private final int row;

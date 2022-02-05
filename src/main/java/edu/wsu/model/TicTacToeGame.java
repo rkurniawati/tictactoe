@@ -3,6 +3,10 @@ package edu.wsu.model;
 import java.util.Observable;
 
 public abstract class TicTacToeGame extends Observable {
+
+    /**
+     * Tic Tac Toe game state: not started, running, completed w/ a winner, completed & draw
+     */
     public enum GameState {
         NOT_STARTED,
         RUNNING,
@@ -10,8 +14,19 @@ public abstract class TicTacToeGame extends Observable {
         COMPLETED_DRAW
     }
 
+    /**
+     *  symbol for the first player
+     */
     public static final char PLAYER_X = 'X';
+
+    /**
+     *  symbol for the second player
+     */
     public static final char PLAYER_O = 'O';
+
+    /**
+     *  board size (3 x 3)
+     */
     public static final int BOARD_SIZE = 3;
 
     /**

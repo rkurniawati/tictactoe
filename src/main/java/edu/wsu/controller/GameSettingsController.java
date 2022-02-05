@@ -18,18 +18,19 @@ public class GameSettingsController {
     public TextField player2;
 
     public void startGameAction(ActionEvent actionEvent) throws Exception {
-        TicTacToeJavaFXView ticTacToeView = new TicTacToeJavaFXView();
-        Scene scene = new Scene(ticTacToeView);
 
+        // save the player names in the model
         TicTacToeGame model = ModelSingleton.getInstance();
-        model.setPlayer1Name("Bertie");
-        model.setPlayer2Name("Ruth");
-        model.addObserver(ticTacToeView);
         model.setPlayer1Name(player1.getText());
         model.setPlayer2Name(player2.getText());
 
-        // create a new scene with the board
+        // set the observable-observer relationship
+        TicTacToeJavaFXView ticTacToeView = new TicTacToeJavaFXView();
+        model.addObserver(ticTacToeView);
+
+        // create a scene with the tictactoe game view
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(ticTacToeView);
         stage.setScene(scene);
         stage.show();
 
