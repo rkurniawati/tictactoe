@@ -6,8 +6,6 @@ public class TicTacToeImplementation extends TicTacToeGame {
     public static final char PLAYER_O = 'O';
     public static final int BOARD_SIZE = 3;
 
-    private static TicTacToeGame instance; // for the singleton
-
     // actual private member variables for the instance
     private final char[][] board;
     private char currentPlayer;
@@ -16,22 +14,21 @@ public class TicTacToeImplementation extends TicTacToeGame {
     private String player1Name;
     private String player2Name;
 
-    public static TicTacToeGame getInstance() {
-        if (instance == null) {
-            instance = new TicTacToeImplementation();
-        }
-        return instance;
-    }
-
     public TicTacToeImplementation() {
         board = new char[BOARD_SIZE][BOARD_SIZE];
-        currentPlayer = PLAYER_X;
         state = GameState.NOT_STARTED;
-        emptySpots = BOARD_SIZE * BOARD_SIZE;
     }
 
     public void startGame() {
         state = GameState.RUNNING;
+        currentPlayer = PLAYER_X;
+        emptySpots = BOARD_SIZE * BOARD_SIZE;
+
+        for (int r = 0; r < BOARD_SIZE; r++) {
+            for (int c = 0; c < BOARD_SIZE; c++) {
+                board[r][c] = 0;
+            }
+        }
         setChanged();
         notifyObservers(this);
         clearChanged();

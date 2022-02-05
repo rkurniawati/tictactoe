@@ -1,6 +1,7 @@
 package edu.wsu;
 
 
+import edu.wsu.model.ModelSingleton;
 import edu.wsu.model.TicTacToeGame;
 import edu.wsu.model.TicTacToeImplementation;
 import edu.wsu.view.TicTacToeJavaFXView;
@@ -26,14 +27,12 @@ import javafx.util.Pair;
  */
 public class App extends Application {
 
-    private int idx = 0;
-
     @Override
     public void start(Stage stage) throws Exception {
         TicTacToeJavaFXView ticTacToeView = new TicTacToeJavaFXView();
         Scene scene = new Scene(ticTacToeView);
 
-        TicTacToeGame model = new TicTacToeImplementation();
+        TicTacToeGame model = ModelSingleton.getInstance();
         model.setPlayer1Name("Bertie");
         model.setPlayer2Name("Ruth");
         model.addObserver(ticTacToeView);
@@ -42,33 +41,6 @@ public class App extends Application {
         stage.show();
 
         model.startGame();
-
-        List<Pair<Integer, Integer>> moves = List.of(
-            new Pair<>(0, 0),
-            new Pair<>(0, 2),
-            new Pair<>(2, 2),
-            new Pair<>(2, 0),
-            new Pair<>(1, 1)
-        );
-
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
-            if (idx < moves.size()) {
-
-                Pair<Integer, Integer> currentMove = moves.get(idx++);
-                model.setValue(currentMove.getKey(), currentMove.getValue());
-            }
-
-        }));
-        //timeline.setCycleCount(Animation.INDEFINITE);
-        //timeline.play();
-    }
-
-    private void delay(int numSeconds)  {
-        try {
-            TimeUnit.SECONDS.sleep(numSeconds);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 
     public static void main(String[] args) {

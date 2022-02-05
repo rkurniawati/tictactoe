@@ -1,7 +1,5 @@
 package edu.wsu.model;
 
-import static edu.wsu.model.Util.checkDraw;
-import static edu.wsu.model.Util.move;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import edu.wsu.view.TicTacToeJavaFXView;
@@ -21,15 +19,13 @@ import org.testfx.matcher.control.LabeledMatchers;
 import org.testfx.service.finder.NodeFinder;
 
 @ExtendWith(ApplicationExtension.class)
-public class TicTacToeViewTest {
+public class TicTacToeClickTest {
 
   private static final String X_IMAGE_PATH = ".+\\/x.png$";
   private static final String O_IMAGE_PATH = ".+\\/o.png$";
   private static final String PLAYER1_NAME = "Bertie";
   private static final String PLAYER2_NAME = "Ruth";
   TicTacToeJavaFXView ticTacToeView;
-  TicTacToeGame model;
-
 
   /**
    * Will be called with {@code @Before} semantics, i. e. before each test method.
@@ -41,7 +37,8 @@ public class TicTacToeViewTest {
     ticTacToeView = new TicTacToeJavaFXView();
     Scene scene = new Scene(ticTacToeView);
 
-    model = ModelSingleton.getInstance();
+    TicTacToeGame model = ModelSingleton.getInstance();
+
     model.setPlayer1Name("Bertie");
     model.setPlayer2Name("Ruth");
     model.addObserver(ticTacToeView);
@@ -71,24 +68,24 @@ public class TicTacToeViewTest {
    * @param robot - Will be injected by the test runner.
    */
   @Test
-  void bertieWinsWADiagonalmove(FxRobot robot) {
+  void bertieWinsWADiagonalMove(FxRobot robot) {
 
     checkCurrentPlayer(PLAYER1_NAME);
-    move(robot, model,  0, 0, X_IMAGE_PATH);
+    move(robot, 0, 0, X_IMAGE_PATH);
 
     checkCurrentPlayer(PLAYER2_NAME);
-    move(robot, model,  0, 2, O_IMAGE_PATH);
+    move(robot, 0, 2, O_IMAGE_PATH);
 
     checkCurrentPlayer(PLAYER1_NAME);
-    move(robot, model,  1, 1, X_IMAGE_PATH);
+    move(robot, 1, 1, X_IMAGE_PATH);
 
     checkCurrentPlayer(PLAYER2_NAME);
-    move(robot, model,  1, 2, O_IMAGE_PATH);
+    move(robot, 1, 2, O_IMAGE_PATH);
 
     checkCurrentPlayer(PLAYER1_NAME);
-    move(robot, model,  2, 2, X_IMAGE_PATH);
+    move(robot, 2, 2, X_IMAGE_PATH);
 
-    Util.checkWinner(PLAYER1_NAME);
+    checkWinner(PLAYER1_NAME);
   }
 
   /**
@@ -96,24 +93,24 @@ public class TicTacToeViewTest {
    * @param robot - Will be injected by the test runner.
    */
   @Test
-  void bertieWinsWARow0move(FxRobot robot) {
+  void bertieWinsWARow0Move(FxRobot robot) {
 
     checkCurrentPlayer(PLAYER1_NAME);
-    move(robot, model,  0, 0, X_IMAGE_PATH);
+    move(robot, 0, 0, X_IMAGE_PATH);
 
     checkCurrentPlayer(PLAYER2_NAME);
-    move(robot, model,  1, 2, O_IMAGE_PATH);
+    move(robot, 1, 2, O_IMAGE_PATH);
 
     checkCurrentPlayer(PLAYER1_NAME);
-    move(robot, model,  0, 1, X_IMAGE_PATH);
+    move(robot, 0, 1, X_IMAGE_PATH);
 
     checkCurrentPlayer(PLAYER2_NAME);
-    move(robot, model,  2, 2, O_IMAGE_PATH);
+    move(robot, 2, 2, O_IMAGE_PATH);
 
     checkCurrentPlayer(PLAYER1_NAME);
-    move(robot, model,  0, 2, X_IMAGE_PATH);
+    move(robot, 0, 2, X_IMAGE_PATH);
 
-    Util.checkWinner(PLAYER1_NAME);
+    checkWinner(PLAYER1_NAME);
   }
 
   /**
@@ -121,24 +118,24 @@ public class TicTacToeViewTest {
    * @param robot - Will be injected by the test runner.
    */
   @Test
-  void bertieWinsWAColum0move(FxRobot robot) {
+  void bertieWinsWAColum0Move(FxRobot robot) {
 
     checkCurrentPlayer(PLAYER1_NAME);
-    move(robot, model,  0, 0, X_IMAGE_PATH);
+    move(robot, 0, 0, X_IMAGE_PATH);
 
     checkCurrentPlayer(PLAYER2_NAME);
-    move(robot, model,  1, 2, O_IMAGE_PATH);
+    move(robot, 1, 2, O_IMAGE_PATH);
 
     checkCurrentPlayer(PLAYER1_NAME);
-    move(robot, model,  2, 0, X_IMAGE_PATH);
+    move(robot, 2, 0, X_IMAGE_PATH);
 
     checkCurrentPlayer(PLAYER2_NAME);
-    move(robot, model,  2, 2, O_IMAGE_PATH);
+    move(robot, 2, 2, O_IMAGE_PATH);
 
     checkCurrentPlayer(PLAYER1_NAME);
-    move(robot, model,  1, 0, X_IMAGE_PATH);
+    move(robot, 1, 0, X_IMAGE_PATH);
 
-    Util.checkWinner(PLAYER1_NAME);
+    checkWinner(PLAYER1_NAME);
   }
 
   /**
@@ -146,27 +143,27 @@ public class TicTacToeViewTest {
    * @param robot - Will be injected by the test runner.
    */
   @Test
-  void ruthWinsWADiagonalmove(FxRobot robot) {
+  void ruthWinsWADiagonalMove(FxRobot robot) {
 
     checkCurrentPlayer(PLAYER1_NAME);
-    move(robot, model,  0, 0, X_IMAGE_PATH);
+    move(robot, 0, 0, X_IMAGE_PATH);
 
     checkCurrentPlayer(PLAYER2_NAME);
-    move(robot, model,  0, 2, O_IMAGE_PATH);
+    move(robot, 0, 2, O_IMAGE_PATH);
 
     checkCurrentPlayer(PLAYER1_NAME);
-    move(robot, model,  1, 0, X_IMAGE_PATH);
+    move(robot, 1, 0, X_IMAGE_PATH);
 
     checkCurrentPlayer(PLAYER2_NAME);
-    move(robot, model,  1, 1, O_IMAGE_PATH);
+    move(robot, 1, 1, O_IMAGE_PATH);
 
     checkCurrentPlayer(PLAYER1_NAME);
-    move(robot, model,  0, 1, X_IMAGE_PATH);
+    move(robot, 0, 1, X_IMAGE_PATH);
 
     checkCurrentPlayer(PLAYER2_NAME);
-    move(robot, model,  2, 0, O_IMAGE_PATH);
+    move(robot, 2, 0, O_IMAGE_PATH);
 
-    Util.checkWinner(PLAYER2_NAME);
+    checkWinner(PLAYER2_NAME);
   }
 
   /**
@@ -177,33 +174,33 @@ public class TicTacToeViewTest {
   void fullBoardBertieWins(FxRobot robot) {
 
     checkCurrentPlayer(PLAYER1_NAME);
-    move(robot, model,  0, 0, X_IMAGE_PATH);
+    move(robot, 0, 0, X_IMAGE_PATH);
 
     checkCurrentPlayer(PLAYER2_NAME);
-    move(robot, model,  0, 1, O_IMAGE_PATH);
+    move(robot, 0, 1, O_IMAGE_PATH);
 
     checkCurrentPlayer(PLAYER1_NAME);
-    move(robot, model,  0, 2, X_IMAGE_PATH);
+    move(robot, 0, 2, X_IMAGE_PATH);
 
     checkCurrentPlayer(PLAYER2_NAME);
-    move(robot, model,  1, 0, O_IMAGE_PATH);
+    move(robot, 1, 0, O_IMAGE_PATH);
 
     checkCurrentPlayer(PLAYER1_NAME);
-    move(robot, model,  1, 1, X_IMAGE_PATH);
+    move(robot, 1, 1, X_IMAGE_PATH);
 
     checkCurrentPlayer(PLAYER2_NAME);
-    move(robot, model,  1, 2, O_IMAGE_PATH);
+    move(robot, 1, 2, O_IMAGE_PATH);
 
     checkCurrentPlayer(PLAYER1_NAME);
-    move(robot, model,  2, 1, X_IMAGE_PATH);
+    move(robot, 2, 1, X_IMAGE_PATH);
 
     checkCurrentPlayer(PLAYER2_NAME);
-    move(robot, model,  2, 0, O_IMAGE_PATH);
+    move(robot, 2, 0, O_IMAGE_PATH);
 
     checkCurrentPlayer(PLAYER1_NAME);
-    move(robot, model,  2, 2, X_IMAGE_PATH);
+    move(robot, 2, 2, X_IMAGE_PATH);
 
-    Util.checkWinner(PLAYER1_NAME);
+    checkWinner(PLAYER1_NAME);
   }
 
   /**
@@ -214,31 +211,31 @@ public class TicTacToeViewTest {
   void fullBoardDraw(FxRobot robot) {
 
     checkCurrentPlayer(PLAYER1_NAME);
-    move(robot, model,  0, 0, X_IMAGE_PATH);
+    move(robot, 0, 0, X_IMAGE_PATH);
 
     checkCurrentPlayer(PLAYER2_NAME);
-    move(robot, model,  0, 1, O_IMAGE_PATH);
+    move(robot, 0, 1, O_IMAGE_PATH);
 
     checkCurrentPlayer(PLAYER1_NAME);
-    move(robot, model,  0, 2, X_IMAGE_PATH);
+    move(robot, 0, 2, X_IMAGE_PATH);
 
     checkCurrentPlayer(PLAYER2_NAME);
-    move(robot, model,  1, 0, O_IMAGE_PATH);
+    move(robot, 1, 0, O_IMAGE_PATH);
 
     checkCurrentPlayer(PLAYER1_NAME);
-    move(robot, model,  1, 1, X_IMAGE_PATH);
+    move(robot, 1, 1, X_IMAGE_PATH);
 
     checkCurrentPlayer(PLAYER2_NAME);
-    move(robot, model,  2, 2, O_IMAGE_PATH);
+    move(robot, 2, 2, O_IMAGE_PATH);
 
     checkCurrentPlayer(PLAYER1_NAME);
-    move(robot, model,  2, 1, X_IMAGE_PATH);
+    move(robot, 2, 1, X_IMAGE_PATH);
 
     checkCurrentPlayer(PLAYER2_NAME);
-    move(robot, model,  2, 0, O_IMAGE_PATH);
+    move(robot, 2, 0, O_IMAGE_PATH);
 
     checkCurrentPlayer(PLAYER1_NAME);
-    move(robot, model,  1, 2, X_IMAGE_PATH);
+    move(robot, 1, 2, X_IMAGE_PATH);
 
     checkDraw();
   }
@@ -248,27 +245,27 @@ public class TicTacToeViewTest {
    * @param robot - Will be injected by the test runner.
    */
   @Test
-  void ruthWinsWARow1move(FxRobot robot) {
+  void ruthWinsWARow1Move(FxRobot robot) {
 
     checkCurrentPlayer(PLAYER1_NAME);
-    move(robot, model,  0, 0, X_IMAGE_PATH);
+    move(robot, 0, 0, X_IMAGE_PATH);
 
     checkCurrentPlayer(PLAYER2_NAME);
-    move(robot, model,  1, 2, O_IMAGE_PATH);
+    move(robot, 1, 2, O_IMAGE_PATH);
 
     checkCurrentPlayer(PLAYER1_NAME);
-    move(robot, model,  0, 1, X_IMAGE_PATH);
+    move(robot, 0, 1, X_IMAGE_PATH);
 
     checkCurrentPlayer(PLAYER2_NAME);
-    move(robot, model,  1, 0, O_IMAGE_PATH);
+    move(robot, 1, 0, O_IMAGE_PATH);
 
     checkCurrentPlayer(PLAYER1_NAME);
-    move(robot, model,  2, 2, X_IMAGE_PATH);
+    move(robot, 2, 2, X_IMAGE_PATH);
 
     checkCurrentPlayer(PLAYER2_NAME);
-    move(robot, model,  1, 1, O_IMAGE_PATH);
+    move(robot, 1, 1, O_IMAGE_PATH);
 
-    Util.checkWinner(PLAYER2_NAME);
+    checkWinner(PLAYER2_NAME);
   }
 
   /**
@@ -276,28 +273,47 @@ public class TicTacToeViewTest {
    * @param robot - Will be injected by the test runner.
    */
   @Test
-  void ruthWinsWAColum2move(FxRobot robot) {
+  void ruthWinsWAColum2Move(FxRobot robot) {
 
     checkCurrentPlayer(PLAYER1_NAME);
-    move(robot, model,  0, 0, X_IMAGE_PATH);
+    move(robot, 0, 0, X_IMAGE_PATH);
 
     checkCurrentPlayer(PLAYER2_NAME);
-    move(robot, model, 1, 2, O_IMAGE_PATH);
+    move(robot, 1, 2, O_IMAGE_PATH);
 
     checkCurrentPlayer(PLAYER1_NAME);
-    move(robot, model,  2, 0, X_IMAGE_PATH);
+    move(robot, 2, 0, X_IMAGE_PATH);
 
     checkCurrentPlayer(PLAYER2_NAME);
-    move(robot, model,  2, 2, O_IMAGE_PATH);
+    move(robot, 2, 2, O_IMAGE_PATH);
 
     checkCurrentPlayer(PLAYER1_NAME);
-    move(robot, model,  1, 1, X_IMAGE_PATH);
+    move(robot, 1, 1, X_IMAGE_PATH);
 
     checkCurrentPlayer(PLAYER2_NAME);
-    move(robot, model,  0, 2, O_IMAGE_PATH);
+    move(robot, 0, 2, O_IMAGE_PATH);
 
-    Util.checkWinner(PLAYER2_NAME);
+    checkWinner(PLAYER2_NAME);
   }
 
+  private void checkDraw() {
+    FxAssert.verifyThat(".label", LabeledMatchers.hasText(CoreMatchers.containsString("NO winner")));
+  }
+
+  private void checkWinner(String playerName) {
+    FxAssert.verifyThat(".label", LabeledMatchers.hasText(CoreMatchers.containsString("winner: "+ playerName)));
+  }
+
+  private void move(FxRobot robot, int row, int col, String imagePath) {
+
+    FxRobotContext context = robot.robotContext();
+    NodeFinder finder = context.getNodeFinder();
+
+    Label cell =  finder.lookup("#cell"+row+col).query();
+    robot.clickOn(cell);
+    ImageView cell02Image = (ImageView) cell.getGraphic();
+    // check that cell row, col containsthe specified image path and that the current player is now Bertie
+    assertTrue(cell02Image.getImage().getUrl().matches(imagePath));
+  }
 
 }
