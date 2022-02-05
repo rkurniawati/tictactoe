@@ -58,7 +58,6 @@ public class TicTacToeViewTest {
    */
   @Test
   void should_start_with_player1(FxRobot robot) {
-    System.out.println("Check button");
     checkCurrentPlayer(PLAYER1_NAME);
   }
 

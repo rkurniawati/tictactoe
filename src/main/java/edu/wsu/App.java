@@ -1,6 +1,8 @@
 package edu.wsu;
 
 
+import static edu.wsu.view.Util.loadFXML;
+
 import edu.wsu.model.ModelSingleton;
 import edu.wsu.model.TicTacToeGame;
 import edu.wsu.model.TicTacToeImplementation;
@@ -29,18 +31,10 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        TicTacToeJavaFXView ticTacToeView = new TicTacToeJavaFXView();
-        Scene scene = new Scene(ticTacToeView);
-
-        TicTacToeGame model = ModelSingleton.getInstance();
-        model.setPlayer1Name("Bertie");
-        model.setPlayer2Name("Ruth");
-        model.addObserver(ticTacToeView);
-
+        Scene scene = new Scene(loadFXML("GameSettings"));
         stage.setScene(scene);
+        stage.setTitle("Tic Tac Toe");
         stage.show();
-
-        model.startGame();
     }
 
     public static void main(String[] args) {
