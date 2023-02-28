@@ -57,7 +57,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0-M5</version>
                 <configuration combine.self="append">
-                    <testClassesDirectory>${build.testOutputDirectory}</testClassesDirectory>
+                    <testClassesDirectory>${project.build.testOutputDirectory}</testClassesDirectory>
                     <argLine>
                         --add-opens edu.wsu/edu.wsu=ALL-UNNAMED
                         --add-modules edu.wsu
@@ -65,7 +65,7 @@
                         --add-exports javafx.graphics/com.sun.javafx.application=ALL-UNNAMED
                     </argLine>
                     <additionalClasspathElements>
-                        <additionalClasspathElement>${build.testOutputDirectory}</additionalClasspathElement>
+                        <additionalClasspathElement>${project.build.testOutputDirectory}</additionalClasspathElement>
                     </additionalClasspathElements>
                 </configuration>
             </plugin>

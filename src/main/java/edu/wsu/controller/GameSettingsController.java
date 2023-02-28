@@ -3,6 +3,7 @@ package edu.wsu.controller;
 import edu.wsu.model.ModelSingleton;
 import edu.wsu.model.TicTacToeGame;
 import edu.wsu.view.TicTacToeJavaFXView;
+import edu.wsu.view.TicTacToeTextView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -27,6 +28,9 @@ public class GameSettingsController {
         // set the observable-observer relationship
         TicTacToeJavaFXView ticTacToeView = new TicTacToeJavaFXView();
         model.addObserver(ticTacToeView);
+
+        TicTacToeTextView textView = new TicTacToeTextView(System.out);
+        model.addObserver(textView);
 
         // create a scene with the tictactoe game view
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
